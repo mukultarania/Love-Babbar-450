@@ -20,7 +20,7 @@ void c_p_c()
 int32_t main()
 {
 	c_p_c();
-	int a = 2, b = 2;
+	int a = 1, b = 2;
 	int d = a++ + ++b;
 	cout << d << " " << a << " " << b;
 
