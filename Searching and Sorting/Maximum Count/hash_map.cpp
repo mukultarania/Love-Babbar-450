@@ -23,49 +23,24 @@ void c_p_c()
 // Auxiliary Space: O(1).
 // As no extra space is required.
 
-int findCandidate(int arr[], int n) {
-	int maj_ind = 0, cnt = 1;
-	for (int i = 1; i < n; i++) {
-		if (arr[maj_ind] == arr[i])
-			cnt++;
-		else
-			cnt--;
-
-		if (cnt == 0) {
-			maj_ind = i;
-			cnt = 1;
+void findMajority(int arr[], int n) {
+	unordered_map<int, int> un;
+	int count = 0;
+	for (int i = 0; i < n; i++) {
+		un[arr[i]]++;
+	}
+	for (auto i : un) {
+		if (i.second > n / 2) {
+			count = 1;
+			cout << "Majority Element Found " << i.first << " Occurence: " <<
+			     i.second << endl;
+			break;
 		}
 	}
+	if (count == 0)
+		cout << "No Majority Element Present";
 
-	return arr[maj_ind];
 }
-
-bool isMajority(int arr[], int n, int cad) {
-	int cnt = 0;
-	for (int i = 0; i < n; i++) {
-		if (arr[i] == cad) cnt++;
-	}
-
-	if (cnt > n / 2)
-		return 1;
-	else
-		return 0;
-}
-
-/* Function to print Majority Element */
-void printMajority(int a[], int size)
-{
-	/* Find the candidate for Majority*/
-	int cand = findCandidate(a, size);
-
-	/* Print the candidate if it is Majority*/
-	if (isMajority(a, size, cand))
-		cout << " " << cand << " ";
-
-	else
-		cout << "No Majority Element";
-}
-
 
 int32_t main()
 {
@@ -74,7 +49,7 @@ int32_t main()
 	int n = sizeof(arr) / sizeof(arr[0]);
 
 	// Function calling
-	printMajority(arr, n);
+	findMajority(arr, n);
 
 	return 0;
 }
